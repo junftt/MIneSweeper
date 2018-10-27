@@ -5,12 +5,12 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class MineSweeper {
-    public MineSweeper(int FRAME_WIDTH, int FRAME_LENGTH, int GROUND_ROW, int GROUND_COLUMN, int HOW_MANY_MINES){
-        this.FRAME_WIDTH = FRAME_WIDTH;
-        this.FRAME_LENGTH = FRAME_LENGTH;
-        this.GROUND_ROW = GROUND_ROW;
-        this.GROUND_COLUMN = GROUND_COLUMN;
-        this.HOW_MANY_MINES = HOW_MANY_MINES;
+    public MineSweeper(int frame_width, int frame_length, int ground_row, int ground_column, int how_many_mines){
+        this.FRAME_WIDTH = frame_width;
+        this.FRAME_LENGTH = frame_length;
+        this.GROUND_ROW = ground_row;
+        this.GROUND_COLUMN = ground_column;
+        this.HOW_MANY_MINES = how_many_mines;
         mines_coordinate = new int[HOW_MANY_MINES][2];
         ground = new char[GROUND_ROW][GROUND_COLUMN];
         button_array = new MyButton[GROUND_ROW][GROUND_COLUMN];
@@ -37,12 +37,12 @@ public class MineSweeper {
 
     public void pushMines() {
         for (int i = 0; i < HOW_MANY_MINES; ++i) {
-            mines_coordinate[i][0] = (int) (10 * Math.random());
-            mines_coordinate[i][1] = (int) (10 * Math.random());
+            mines_coordinate[i][0] = (int) (GROUND_COLUMN * Math.random());
+            mines_coordinate[i][1] = (int) (GROUND_ROW * Math.random());
             for (int j = 0; j < i; ++j) {
                 while ((mines_coordinate[j][0] == mines_coordinate[i][0]) || (mines_coordinate[j][1] == mines_coordinate[i][1])) {
-                    mines_coordinate[i][0] = (int) (10 * Math.random());
-                    mines_coordinate[i][1] = (int) (10 * Math.random());
+                    mines_coordinate[i][0] = (int) (GROUND_COLUMN * Math.random());
+                    mines_coordinate[i][1] = (int) (GROUND_ROW * Math.random());
                     j = 0;
                 }
             }
@@ -180,7 +180,7 @@ public class MineSweeper {
                 int[][] visited = new int[GROUND_ROW][GROUND_COLUMN];
                 temp.Open_leftClick(ground, visited);
             }
-            if (howmany_F == 10) {
+            if (howmany_F == HOW_MANY_MINES) {
                 for(int i = 0; i < HOW_MANY_MINES; ++i){
                     if(!(button_array[mines_coordinate[i][1]][mines_coordinate[i][0]].is_flaged))
                         return;
