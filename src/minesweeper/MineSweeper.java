@@ -22,7 +22,7 @@ public class MineSweeper {
     
     private final int GROUND_ROW;
     private final int GROUND_COLUMN;
-    private final char[][] ground;//数组里面可以改，final只限定变量不可改
+    private final char[][] ground;//数组里面可以改，final只限定变量不可改动
 
     public void initiateMineground() {
         for (int i = 0; i < GROUND_ROW; ++i) {
